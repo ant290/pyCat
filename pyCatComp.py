@@ -6,11 +6,13 @@ from tkinter import ttk
 import win32api as win
 from os import path
 
-#x is the horizontal placement of the pal
-x = 500
-
 pal_height = 100
 pal_width = 100
+workspace_details = win.GetMonitorInfo(win.MonitorFromPoint((0, 0)))['Work']
+baseline_location = workspace_details[3] - pal_height
+
+#x is the horizontal placement of the pal
+x = random.randrange(workspace_details[0] + pal_width,workspace_details[2] - pal_width,100)
 
 cycle = 0
 check = 1
@@ -23,7 +25,7 @@ event_number = random.randrange(1,3,1)
 #impath = 'D:\\Development\\pyCat\\assets\\gifCat\\'
 bundle_dir = path.abspath(path.dirname(__file__))
 impath = bundle_dir + '\\assets\\gifCat\\'
-baseline_location = win.GetMonitorInfo(win.MonitorFromPoint((0, 0)))['Work'][3] - pal_height
+
 
 #transfer random no. to event
 def event(cycle,check,event_number,x):
