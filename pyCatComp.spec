@@ -5,7 +5,7 @@ a = Analysis(
     ['pyCatComp.py'],
     pathex=[],
     binaries=[],
-    datas=[('assets\\gifCat\\*.gif', 'assets\\gifCat')],
+    datas=[('assets\\*', 'assets')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

@@ -21,10 +21,19 @@ sleep_num = [10,11,12,13,15]
 walk_left = [6,7]
 walk_right = [8,9]
 event_number = random.randrange(1,3,1)
-#probably use pathlib here instead
-#impath = 'D:\\Development\\pyCat\\assets\\gifCat\\'
+
+def roll_creature():
+    #use a random 1-10 to pick the creature
+    creature_number = random.randrange(1,10,1)
+    match creature_number:
+        case 7 | 8 | 9| 10:
+            return 'fox'
+        case _:
+            return 'cat'
+
+creature_name = roll_creature()
 bundle_dir = path.abspath(path.dirname(__file__))
-impath = bundle_dir + '\\assets\\gifCat\\'
+impath = f"{bundle_dir}\\assets\\gif{creature_name.capitalize()}\\"
 
 
 #transfer random no. to event
@@ -100,12 +109,12 @@ def update(cycle,check,event_number,x):
 window = tk.Tk()
 window.title("buddy")
 #call buddy's action gif
-idle = [tk.PhotoImage(file=impath+'idle.gif',format = 'gif -index %i' %(i)) for i in range(5)]#idle gif
-idle_to_sleep = [tk.PhotoImage(file=impath+'idle_to_sleep.gif',format = 'gif -index %i' %(i)) for i in range(8)]#idle to sleep gif
-sleep = [tk.PhotoImage(file=impath+'sleep.gif',format = 'gif -index %i' %(i)) for i in range(3)]#sleep gif
-sleep_to_idle = [tk.PhotoImage(file=impath+'sleep_to_idle.gif',format = 'gif -index %i' %(i)) for i in range(8)]#sleep to idle gif
-walk_positive = [tk.PhotoImage(file=impath+'walking_positive.gif',format = 'gif -index %i' %(i)) for i in range(8)]#walk to left gif
-walk_negative = [tk.PhotoImage(file=impath+'walking_negative.gif',format = 'gif -index %i' %(i)) for i in range(8)]#walk to right gif
+idle = [tk.PhotoImage(file=f"{impath}idle_{creature_name}.gif",format = 'gif -index %i' %(i)) for i in range(5)]#idle gif
+idle_to_sleep = [tk.PhotoImage(file=f"{impath}idle_to_sleep_{creature_name}.gif",format = 'gif -index %i' %(i)) for i in range(8)]#idle to sleep gif
+sleep = [tk.PhotoImage(file=f"{impath}sleep_{creature_name}.gif",format = 'gif -index %i' %(i)) for i in range(3)]#sleep gif
+sleep_to_idle = [tk.PhotoImage(file=f"{impath}sleep_to_idle_{creature_name}.gif",format = 'gif -index %i' %(i)) for i in range(8)]#sleep to idle gif
+walk_positive = [tk.PhotoImage(file=f"{impath}walking_positive_{creature_name}.gif",format = 'gif -index %i' %(i)) for i in range(8)]#walk to left gif
+walk_negative = [tk.PhotoImage(file=f"{impath}walking_negative_{creature_name}.gif",format = 'gif -index %i' %(i)) for i in range(8)]#walk to right gif
 #window configuration
 window.config(highlightbackground='black')
 label = tk.Label(window,bd=0,bg='black')
